@@ -1,7 +1,7 @@
 // ignore_for_file: camel_case_types, constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:echo/common/network_service.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert' as convert;
 import 'package:kutipan/screens/kutipan_penyemangat_home.dart';
@@ -23,7 +23,7 @@ class _Kutipan_PenyemangatHomePageState
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<NetworkService>();
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tambahkan Kutipan'),
@@ -61,16 +61,16 @@ class _Kutipan_PenyemangatHomePageState
                       hintText: 'Masukin nama kamu (boleh anonim juga :D)',
                       labelText: 'Nama',
                     ),
-                     onChanged: (String? value) {
+                    onChanged: (String? value) {
                       setState(() {
                         nama = value!;
                       });
-                     },
-                      onSaved: (String? value) {
+                    },
+                    onSaved: (String? value) {
                       setState(() {
                         nama = value!;
                       });
-                      },
+                    },
                     validator: (String? value) {
                       return (value == null || value.isEmpty)
                           ? 'Nama tidak boleh kosong.'
@@ -89,7 +89,7 @@ class _Kutipan_PenyemangatHomePageState
                     onSaved: (String? value) {
                       // This optional block of code can be used to run
                       // code when the user saves the form.
-                       setState(() {
+                      setState(() {
                         kutipan = value!;
                       });
                     },
@@ -97,7 +97,7 @@ class _Kutipan_PenyemangatHomePageState
                       setState(() {
                         kutipan = value!;
                       });
-                     },
+                    },
                     validator: (String? value) {
                       return (value == null || value.isEmpty)
                           ? 'Kutipannya tidak boleh kosong.'
@@ -127,7 +127,8 @@ class _Kutipan_PenyemangatHomePageState
                         if (response['status'] == 'success') {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
-                            content: Text("Kutipan Penyamangat baru telah berhasil disimpan!"),
+                            content: Text(
+                                "Kutipan Penyamangat baru telah berhasil disimpan!"),
                           ));
                           Navigator.pushReplacementNamed(
                               context, KutipanPenyemangatHomePage.ROUTE_NAME);

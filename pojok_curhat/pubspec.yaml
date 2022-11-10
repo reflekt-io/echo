@@ -18,6 +18,8 @@ dependencies:
   echo:
     path: ../.
   provider: ^6.0.1
+  pbp_django_auth:
+    path: ../../pbp_django_auth
 
 dev_dependencies:
   flutter_test:

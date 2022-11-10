@@ -1,6 +1,6 @@
 // ignore_for_file: camel_case_types, non_constant_identifier_names, constant_identifier_names
 
-import 'package:echo/common/network_service.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:echo/widgets/drawer_menu.dart';
 import 'package:kutipan/screens/add_kutipan_penyemangat_page.dart';
@@ -13,10 +13,12 @@ class KutipanPenyemangatHomePage extends StatefulWidget {
   static const ROUTE_NAME = '/kutipan';
 
   @override
-  State<KutipanPenyemangatHomePage> createState() => _Kutipan_PenyemangatHomePageState();
+  State<KutipanPenyemangatHomePage> createState() =>
+      _Kutipan_PenyemangatHomePageState();
 }
 
-class _Kutipan_PenyemangatHomePageState extends State<KutipanPenyemangatHomePage> {
+class _Kutipan_PenyemangatHomePageState
+    extends State<KutipanPenyemangatHomePage> {
   // List<Kutipan_Penyemangat> dummyKutipan_Penyemangat = DUMMY_CATEGORIES.fields;
 
   @override
@@ -30,25 +32,26 @@ class _Kutipan_PenyemangatHomePageState extends State<KutipanPenyemangatHomePage
           future: fetchKutipan(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              List<Kutipan_Penyemangat>? kutipan = snapshot.data as List<Kutipan_Penyemangat>;   
+              List<Kutipan_Penyemangat>? kutipan =
+                  snapshot.data as List<Kutipan_Penyemangat>;
               return kutipan.isEmpty
-                ? const Center(
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 30.0),
-                      child: Text(
-                        'Tekan tombol tambah untuk menambahkan kutipan penyemangat baru.',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                  ? const Center(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 30.0),
+                        child: Text(
+                          'Tekan tombol tambah untuk menambahkan kutipan penyemangat baru.',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ),
-                    ),
-                  )
-                : ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemCount: kutipan.length,
-                    itemBuilder: (context, index) {
-                      return KutipanPenyemangatCard(kutipan[index]);
-                    },
-                  );
+                    )
+                  : ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemCount: kutipan.length,
+                      itemBuilder: (context, index) {
+                        return KutipanPenyemangatCard(kutipan[index]);
+                      },
+                    );
             } else {
               return const Center(child: CircularProgressIndicator());
             }
@@ -66,7 +69,7 @@ class _Kutipan_PenyemangatHomePageState extends State<KutipanPenyemangatHomePage
   }
 
   Future<List<Kutipan_Penyemangat>> fetchKutipan() async {
-    final request = context.watch<NetworkService>();
+    final request = context.watch<CookieRequest>();
     String url = 'https://reflekt-io.herokuapp.com/kutipan-penyemangat/json';
 
     final response = await request.get(url);

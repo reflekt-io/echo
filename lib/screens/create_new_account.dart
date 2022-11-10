@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names, use_build_context_synchronously
 
 import 'dart:convert' as convert;
-import 'package:echo/common/network_service.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:echo/common/background_image.dart';
 import 'package:echo/screens/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<NetworkService>();
+    final request = context.watch<CookieRequest>();
     Size size = MediaQuery.of(context).size;
     return Form(
       key: _formKey,

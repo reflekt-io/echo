@@ -1,4 +1,3 @@
-import 'package:echo/common/network_service.dart';
 import 'package:flutter/material.dart';
 import 'package:about_us/screens/about_us.dart';
 import 'package:echo/screens/home_page.dart';
@@ -16,6 +15,7 @@ import 'package:ide_kegiatan/screens/ide_kegiatan_home.dart';
 import 'package:tembok_harapan/screens/add_tembok_harapan_page.dart';
 import 'package:tembok_harapan/screens/tembok_harapan_home.dart';
 import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 void main() {
   runApp(const MyApp());
@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Provider(
         create: (_) {
-          NetworkService request = NetworkService();
+          CookieRequest request = CookieRequest();
 
           return request;
         },

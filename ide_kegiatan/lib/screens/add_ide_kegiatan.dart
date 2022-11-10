@@ -1,4 +1,4 @@
-import 'package:echo/common/network_service.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert' as convert;
 import 'package:flutter/material.dart';
@@ -21,7 +21,7 @@ class _IdeKegiatanHomePageState extends State<AddRekomendasiKegiatanPage> {
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<NetworkService>();
+    final request = context.watch<CookieRequest>();
 
     return Scaffold(
       appBar: AppBar(

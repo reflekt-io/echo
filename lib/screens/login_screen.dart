@@ -1,5 +1,5 @@
 // ignore_for_file: constant_identifier_names, use_build_context_synchronously
-import 'package:echo/common/network_service.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:echo/common/background_image.dart';
 import 'package:echo/screens/create_new_account.dart';
@@ -25,10 +25,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   String username = "";
   String password1 = "";
-  
+
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<NetworkService>();
+    final request = context.watch<CookieRequest>();
     Size size = MediaQuery.of(context).size;
     return Form(
         key: _formKey,
@@ -104,7 +104,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                             hintStyle: const TextStyle(color: Colors.white),
-                            
                           ),
                           onChanged: (String? value) {
                             setState(() {
@@ -137,21 +136,25 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         child: TextButton(
                           onPressed: () async {
-                            final response = await request
-                                .login("https://reflekt-io.herokuapp.com/loginflutter", {
-                              'username': username,
-                              'password': password1,
-                            });
+                            final response = await request.login(
+                                "https://reflekt-io.herokuapp.com/loginflutter",
+                                {
+                                  'username': username,
+                                  'password': password1,
+                                });
                             if (response['status']) {
-                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
                                 content: Text("Successfully logged in!"),
                               ));
 
                               Navigator.pushReplacementNamed(
-                                context, HomePage.ROUTE_NAME);
+                                  context, HomePage.ROUTE_NAME);
                             } else {
-                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                content: Text("An error occured, please try again."),
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content:
+                                    Text("An error occured, please try again."),
                               ));
                             }
                           },

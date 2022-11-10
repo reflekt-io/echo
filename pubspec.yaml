@@ -45,6 +45,8 @@ dependencies:
     path: pojok_curhat
   tembok_harapan:
     path: tembok_harapan
+  pbp_django_auth:
+    path: ../pbp_django_auth
 
 
   # The following adds the Cupertino Icons font to your application.

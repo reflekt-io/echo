@@ -1,7 +1,7 @@
 // ignore_for_file: camel_case_types, constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:echo/common/network_service.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert' as convert;
 import 'package:tembok_harapan/screens/tembok_harapan_home.dart';
@@ -16,13 +16,13 @@ class AddTembokHarapanPage extends StatefulWidget {
 
 class _Tembok_HarapanHomePageState extends State<AddTembokHarapanPage> {
   final _formKey = GlobalKey<FormState>();
-  
+
   String title = "";
   String harapan = "";
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<NetworkService>();
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tambahkan Harapan'),
@@ -64,7 +64,7 @@ class _Tembok_HarapanHomePageState extends State<AddTembokHarapanPage> {
                       setState(() {
                         title = value!;
                       });
-                     },
+                    },
                     onSaved: (String? value) {
                       setState(() {
                         title = value!;
@@ -82,13 +82,14 @@ class _Tembok_HarapanHomePageState extends State<AddTembokHarapanPage> {
                   child: TextFormField(
                     decoration: const InputDecoration(
                       icon: Icon(Icons.sticky_note_2),
-                      hintText: 'Apa yang akan kamu lakukan agar kamu dapat mewujudkan harapanmu?',
+                      hintText:
+                          'Apa yang akan kamu lakukan agar kamu dapat mewujudkan harapanmu?',
                       labelText: 'Usahamu',
                     ),
                     onSaved: (String? value) {
                       // This optional block of code can be used to run
                       // code when the user saves the form.
-                       setState(() {
+                      setState(() {
                         harapan = value!;
                       });
                     },
@@ -126,7 +127,8 @@ class _Tembok_HarapanHomePageState extends State<AddTembokHarapanPage> {
                         if (response['status'] == 'success') {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
-                            content: Text("Harapan baru telah berhasil disimpan!"),
+                            content:
+                                Text("Harapan baru telah berhasil disimpan!"),
                           ));
                           Navigator.pushReplacementNamed(
                               context, TembokHarapanHomePage.ROUTE_NAME);

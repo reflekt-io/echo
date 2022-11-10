@@ -1,6 +1,6 @@
 // ignore_for_file: unnecessary_question_mark, prefer_final_fields, unused_field, constant_identifier_names
 import 'dart:convert' as convert;
-import 'package:echo/common/network_service.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:journal/models/option.dart';
 import 'package:journal/screens/journal_home_page.dart';
@@ -73,7 +73,7 @@ class _JournalHomePageState extends State<AddJournalPage> {
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<NetworkService>();
+    final request = context.watch<CookieRequest>();
 
     return Scaffold(
       appBar: AppBar(

@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names, avoid_print
 
-import 'package:echo/common/network_service.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:echo/widgets/drawer_menu.dart';
 import 'package:journal/models/journal.dart';
@@ -17,7 +17,6 @@ class JournalHomePage extends StatefulWidget {
 }
 
 class _JournalHomePageState extends State<JournalHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,25 +29,25 @@ class _JournalHomePageState extends State<JournalHomePage> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               List<Journal>? journal = snapshot.data as List<Journal>;
-              
+
               return journal.isEmpty
-                ? const Center(
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 30.0),
-                      child: Text(
-                        'Tekan tombol tambah untuk menambahkan jurnal baru.',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                  ? const Center(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 30.0),
+                        child: Text(
+                          'Tekan tombol tambah untuk menambahkan jurnal baru.',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ),
-                    ),
-                  )
-                : ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemCount: journal.length,
-                    itemBuilder: (context, index) {
-                      return JournalCard(journal[index]);
-                    },
-                  );
+                    )
+                  : ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemCount: journal.length,
+                      itemBuilder: (context, index) {
+                        return JournalCard(journal[index]);
+                      },
+                    );
             } else {
               return const Center(child: CircularProgressIndicator());
             }
@@ -65,7 +64,7 @@ class _JournalHomePageState extends State<JournalHomePage> {
   }
 
   Future<List<Journal>> fetchJournal() async {
-    final request = context.watch<NetworkService>();
+    final request = context.watch<CookieRequest>();
     String url = 'https://reflekt-io.herokuapp.com/journal/json';
 
     final response = await request.get(url);

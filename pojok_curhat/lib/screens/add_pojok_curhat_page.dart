@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 import 'dart:convert' as convert;
-import 'package:echo/common/network_service.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pojok_curhat/screens/pojok_curhat_home.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +24,7 @@ class _Pojok_CurhatHomePageState extends State<AddPojokCurhatPage> {
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<NetworkService>();
+    final request = context.watch<CookieRequest>();
 
     return Scaffold(
       appBar: AppBar(
@@ -119,7 +119,7 @@ class _Pojok_CurhatHomePageState extends State<AddPojokCurhatPage> {
                     ),
                     onChanged: (String? value) {
                       setState(() {
-                        _typedMessage= value!;
+                        _typedMessage = value!;
                       });
                     },
                     onSaved: (String? value) {

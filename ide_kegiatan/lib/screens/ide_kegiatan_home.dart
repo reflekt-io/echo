@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:echo/common/network_service.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:echo/widgets/drawer_menu.dart';
 import 'package:ide_kegiatan/models/kegiatan.dart';
@@ -124,7 +124,7 @@ class _IdeKegiatanHomePageState extends State<IdeKegiatanHomePage> {
   }
 
   Future<List<Kegiatan>> fetchKegiatan() async {
-    final request = context.watch<NetworkService>();
+    final request = context.watch<CookieRequest>();
     String url = 'https://reflekt-io.herokuapp.com/refleksi/add-deskripsi';
 
     final response = await request.get(url);
@@ -140,7 +140,7 @@ class _IdeKegiatanHomePageState extends State<IdeKegiatanHomePage> {
   }
 
   Future<List<Rekomendasi>> fetchRekomendasi() async {
-    final request = context.watch<NetworkService>();
+    final request = context.watch<CookieRequest>();
     String url = 'https://reflekt-io.herokuapp.com/refleksi/add-deskripsi';
 
     final response = await request.get(url);

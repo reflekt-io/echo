@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names, avoid_print
 
-import 'package:echo/common/network_service.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:about_us/screens/about_us.dart';
 import 'package:deteksi_depresi/screens/phq9_page.dart';
@@ -28,13 +28,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<NetworkService>();
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          // Nanti jangan pakai const (variable, cuy)
-          'Halo, ${request.username}!',
-        ),
+        // title: Text(
+        //   // Nanti jangan pakai const (variable, cuy)
+        //   'Halo, ${request.username}!',
+        // ),
       ),
       drawer: const DrawerMenu(ROUTE_NAME),
       body: SingleChildScrollView(
@@ -66,7 +66,8 @@ class HomePage extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         // Go to the screen
-                        Navigator.pushReplacementNamed(context, PHQ9.ROUTE_NAME);
+                        Navigator.pushReplacementNamed(
+                            context, PHQ9.ROUTE_NAME);
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
